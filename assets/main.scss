@@ -1,0 +1,527 @@
+@font-face {
+    font-family: "Gilroy";
+    src: url("/fonts/Gilroy/Gilroy-Regular.woff2") format("woff2"),
+        url("/fonts/Gilroy/Gilroy-Regular.woff") format("woff");
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Gilroy";
+    src: url("/fonts/Gilroy/Gilroy-SemiBold.woff2") format("woff2"),
+        url("/fonts/Gilroy/Gilroy-SemiBold.woff") format("woff");
+    font-weight: 800;
+    font-display: swap;
+}
+
+*,
+:after,
+:before {
+    box-sizing: border-box;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+li,
+ol,
+ul {
+    list-style: none;
+}
+
+a,
+a:active,
+a:focus,
+a:hover,
+a:visited {
+    text-decoration: none;
+}
+
+a {
+    color: inherit;
+}
+
+input:active,
+input:focus,
+input:hover {
+    outline: none;
+}
+
+input::placeholder {
+    color: #696969;
+}
+
+iframe {
+    width: 100%;
+    border: none;
+}
+
+body {
+    font-family: "Gilroy", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color);
+    font-display: auto;
+    background: var(--bg);
+    transition: 0.25s;
+}
+
+
+body,
+html {
+    height: 100%;
+}
+
+body {
+    -webkit-tap-highlight-color: transparent; // for mobile
+}
+
+#__nuxt,
+.layout {
+    min-height: 100vh;
+}
+
+.layout {
+    position: relative;
+    top: 42px;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    min-height: 100vh;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+
+input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+    -webkit-appearance: none;
+}
+
+textarea,
+input.text,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+.input-checkbox {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+
+.page-content {
+    min-height: 100vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-no-hero {
+    margin-top: 100px;
+}
+
+.site-content {
+    margin-top: 64px;
+    margin-bottom: 96px;
+    min-height: 100%
+}
+
+.site-content a {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(currentColor), to(currentColor));
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 2px;
+    font-family: inherit;
+    padding-bottom: 2px;
+    text-decoration: none;
+
+    &:hover {
+        background-image: -webkit-gradient(linear, left top, left bottom, from(currentColor), to(currentColor));
+        background-image: linear-gradient(currentColor, currentColor);
+        color: var(--color-primary);
+        -webkit-animation: line .25s ease-in-out;
+        animation: line .25s ease-in-out;
+    }
+}
+
+@keyframes line {
+    0% {
+        background-size: 0 2px;
+    }
+
+    100% {
+        background-size: 100% 2px;
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: 1330px;
+    margin: 0 auto;
+}
+
+.container-sm {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.text-block-width {
+    max-width: 1028px;
+}
+
+h1 {
+    font-family: "Gilroy";
+    font-size: 66px;
+    font-weight: 800;
+    line-height: 120%;
+}
+
+h2 {
+    font-family: "Gilroy";
+    font-size: 50px;
+    font-weight: 800;
+    line-height: 120%;
+}
+
+h3 {
+    font-family: "Gilroy";
+    font-size: 37px;
+    font-weight: 800;
+    line-height: 120%;
+}
+
+h4 {
+    font-family: "Gilroy";
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 120%;
+}
+
+h5 {
+    font-family: "Gilroy";
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 120%;
+}
+
+.gr-col-1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.gr-col-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+}
+
+.gr-col-3 {
+    grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.gr-col-4 {
+    grid-template-columns: repeat(4, 1fr) !important;
+}
+
+.bg-blue {
+    background: var(--bg-blue) !important;
+}
+
+.bg-yellow {
+    background: var(--bg-yellow) !important;
+}
+
+.bg-purple {
+    background: var(--bg-purple) !important;
+}
+
+.page-enter-active,
+.page-leave-active {
+    transition: all 0.25s;
+}
+
+.page-enter,
+.page-leave-active {
+    opacity: 0;
+
+}
+
+.breadcrumbs-container--page-no-cover {
+    .breadcrumbs-link {
+        color: var(--color);
+    }
+
+    .breadcrumbs-item::after {
+        background: var(--color);
+    }
+
+    .breadcrumbs-link--noactive {
+        color: rgba(0, 0, 0, 0.48) !important;
+    }
+}
+
+.wp-block-button {
+    max-width: 300px;
+}
+
+.wp-block-button__link {
+    position: relative;
+    z-index: 0;
+    background: transparent;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    padding: 0 30px;
+    line-height: 72px;
+    height: 72px;
+    color: var(--color);
+    border: 1px solid #ff3700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.5s border;
+
+    &.has-white-color {
+        border: 1px solid #ffffff;
+
+        .button-content__name,
+        .button-content__icon {
+            color: #ffffff;
+        }
+    }
+
+    &.color-style {
+        border: 1px solid #ff3700;
+
+        .button-content__name {
+            color: #212121;
+        }
+
+        .button-content__icon {
+            color: #ff3700;
+        }
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 0%;
+        top: 0;
+        right: -50%;
+        border-radius: inherit;
+        background: linear-gradient(89.92deg,
+                #460a78 -19.92%,
+                #be2878 11.7%,
+                #fc3e44 44.86%,
+                #f58746 66.81%);
+        transition: left 0.65s ease-in-out, right 0.65s ease-in-out,
+            width 0.65s ease-in-out;
+        z-index: -1;
+    }
+
+    &:hover {
+        color: #ffffff;
+        border: 1px solid transparent;
+    }
+
+    &:hover .button-content__icon {
+        color: #ffffff;
+    }
+
+    &:hover:before {
+        left: 0%;
+        width: 150%;
+    }
+}
+
+
+
+//wp setting style
+.has-white-color {
+    color: #ffffff;
+}
+
+.wp-block-columns {
+    gap: 30px;
+}
+
+.wp-block-image {
+    img {
+        max-width: 100%;
+    }
+}
+
+
+
+//banner test start
+.banner-test {
+    position: absolute;
+    top: -42px;
+    text-align: center;
+    height: 42px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(122.56% 389.1% at -22.56% 175.97%, #460a78 11.35%, #be2878 43.57%, #fc3e44 77.36%, #f58746 99.72%);
+
+    p {
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: bold;
+    }
+}
+
+@media (min-width: 1280px) and (max-width: 1406px) {
+    .container {
+        padding: 0 2em;
+    }
+}
+
+@media (min-width: $mobile) and (max-width: 1280px) {
+    .container {
+        padding: 0 3em;
+    }
+}
+
+@media (max-width: $mobile) {
+    h1 {
+        font-size: 50px;
+    }
+
+    h2 {
+        font-size: 37px;
+    }
+
+    h3 {
+        font-size: 28px;
+    }
+
+    h4 {
+        font-size: 21px;
+    }
+
+    h5 {
+        font-size: 18px;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+
+    .site-content {
+        margin-top: 36px;
+        margin-bottom: 64px;
+    }
+
+    .section-hero-home__title {
+        max-width: 100%;
+        font-size: 50px;
+        line-height: 120%;
+    }
+
+    .page-no-hero {
+        margin-top: 64px;
+    }
+
+}
