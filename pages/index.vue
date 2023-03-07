@@ -1,5 +1,7 @@
+<script lang="ts" setup>
+</script>
 <template>
-  <div>3</div>
+  <div style="height: 3000px">dfdfdgf</div>
 </template>
 <script setup lang="ts">
 useHead({

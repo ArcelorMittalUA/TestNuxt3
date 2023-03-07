@@ -15,6 +15,27 @@ export default defineNuxtConfig({
         '@nuxt/image-edge',
         '@nuxtjs/device',
     ],
+    i18n: {
+        defaultLocale: 'uk',
+        //skipSettingLocaleOnNavigate: true,
+        //lazy: true,
+        langDir: 'lang',
+        baseUrl: 'https://ukraine.arcelormittal.com',
+        locales: [
+            {
+                code: 'uk',
+                name: 'Ukraine',
+                iso: 'uk-UA',
+                file: 'uk-UA.json'
+            },
+            {
+                code: 'en',
+                name: 'English',
+                iso: 'en-US',
+                file: 'en-US.json'
+            },
+        ],
+    },
     apollo: {
         autoImports: true,
         authType: 'Bearer',
