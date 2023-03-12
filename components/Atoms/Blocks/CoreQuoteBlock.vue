@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+const props = defineProps({
+  attributes: {
+    type: Object,
+    default: () => ({}),
+  },
+});
+</script>
 <template>
   <div class="quote-block__container">
     <div
@@ -12,13 +20,6 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  props: {
-    attributes: {},
-  },
-}
-</script>
 <style lang="scss">
 .quote-block__container {
   max-width: 1028px;

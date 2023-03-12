@@ -3,13 +3,14 @@ const props = defineProps({
   heading: {
     type: Object,
     required: true,
+    default: () => ({}),
   },
 });
 </script>
 
 <template>
   <section
-    v-else-if="heading.herovideoblock"
+    v-if="heading.herovideoblock"
     class="section-hero-home"
     :style="{
       backgroundImage: `url(${heading.herovideoblock.videocover.sourceUrl})`,

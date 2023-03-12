@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import getMenu from "@/graphql/getMenu.gql";
+const { locale, locales, setLocale, onBeforeLanguageSwitch } = useI18n();
 import { useI18n } from "vue-i18n";
 
 const isOpen = ref(null);
@@ -13,69 +15,27 @@ const managementPageAll = computed(() => {
   );
 });
 
-const query = gql`
-  query getMenu($locale: LanguageCodeFilterEnum) {
-    getMenu: menuItems(
-      where: { language: $locale, location: MENU_1 }
-      first: 100
-    ) {
-      edges {
-        node {
-          id
-          label
-          path
-          parentId
-          formenu {
-            menuDescription
-          }
-          childItems {
-            edges {
-              node {
-                id
-                label
-                path
-                childItems {
-                  edges {
-                    node {
-                      id
-                      label
-                      path
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
 interface MenuItem {
   node: {
     parentId: string;
   };
 }
 
-const { locale, locales, setLocale, onBeforeLanguageSwitch  } = useI18n();
 const availableLocales = computed(() => {
   return locales.value.filter((i) => i.code !== locale.value);
 });
 
-const variables = ref({
+const variables = {
   locale: locale.value.toUpperCase(),
-});
+};
 
-const options = ref({
-  fetchPolicy: "network-only",
-});
-
-const { data } = await useAsyncQuery(query, variables, options);
+const { data } = await useAsyncQuery(getMenu, variables)
 
 
 const menuParent = computed(() => {
-  return data.value?.getMenu.edges.filter((i: MenuItem) => i.node.parentId === null);
+  return data.value?.getMenu.edges.filter(
+    (i: MenuItem) => i.node.parentId === null
+  );
 });
 
 const clearInput = () => {
@@ -210,6 +170,7 @@ onUnmounted(() => {
                 href="#"
                 v-for="locale in availableLocales"
                 :key="locale.code"
+                class="toolbar-text"
                 @click.prevent.stop="setLocale(locale.code)"
                 >{{ locale.code }}</a
               >

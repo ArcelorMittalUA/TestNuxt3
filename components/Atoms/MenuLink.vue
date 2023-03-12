@@ -5,7 +5,7 @@ const props = defineProps({
     required: true,
   },
   arrow: {
-    type: Boolean,
+    type: String,
     required: true,
   },
 });
@@ -13,7 +13,7 @@ const props = defineProps({
 <template>
   <NuxtLink :to="localePath(item.path)">
     <span v-if="arrow != 0" class="header-menu__icon">
-      <TheArrow />
+      <AtomsIconsTheArrow />
     </span>
     <span v-else>{{ item.label }}</span>
   </NuxtLink>

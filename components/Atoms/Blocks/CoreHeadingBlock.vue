@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+const props = defineProps({
+  attributes: {
+    type: Object,
+    default: () => ({}),
+  },
+});
+</script>
 <template>
   <div class="text-block-width">
     <h1
@@ -28,13 +36,6 @@
     <h6 v-else class="block-title h6" v-html="attributes.content"></h6>
   </div>
 </template>
-<script>
-export default {
-  props: {
-    attributes: {},
-  },
-}
-</script>
 <style lang="scss">
 .block-title {
   margin-top: 64px;

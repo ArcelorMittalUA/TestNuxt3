@@ -1,0 +1,7 @@
+overwrite: true
+schema: "https://ukraine-api.arcelormittal.com.ua/index.php?graphql"
+generates:
+  ./fragmentTypes.json:
+    plugins:
+      - introspection
+      

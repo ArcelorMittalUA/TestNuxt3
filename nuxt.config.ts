@@ -8,17 +8,21 @@ export default defineNuxtConfig({
             ],
         }
     },
-    ssr: true,
     modules: [
         '@nuxtjs/apollo',
         '@nuxtjs/i18n',
         '@nuxt/image-edge',
         '@nuxtjs/device',
+        'nuxt-swiper',
     ],
     i18n: {
         defaultLocale: 'uk',
         //skipSettingLocaleOnNavigate: true,
         //lazy: true,
+        detectBrowserLanguage: {
+            useCookie: true,
+            cookieKey: 'i18n_redirected'
+          },
         langDir: 'lang',
         baseUrl: 'https://ukraine.arcelormittal.com',
         locales: [
@@ -43,10 +47,28 @@ export default defineNuxtConfig({
         tokenStorage: 'cookie',
         clients: {
             default: {
-                tokenName: "github-token",
-                httpEndpoint: 'https://ukraine-api.arcelormittal.com.ua/index.php?graphql',
+                httpEndpoint: 'https://ukraine-api.arcelormittal.com/index.php?graphql',
             }
         },
+        other: './graphql/config/config.ts'
+    },
+    image: {
+        // The screen sizes predefined by `@nuxt/image`:
+        screens: {
+          xs: 320,
+          sm: 640,
+          md: 768,
+          lg: 1024,
+          xl: 1280,
+          xxl: 1536,
+          '2xl': 1536
+        },
+        domains: ['ukraine-api.arcelormittal.com'],
+        staticFilename: '[publicPath]/images/[name]-[hash][ext]',
+        dir: 'public/images',
+        alias: {
+            static: 'ukraine-api.arcelormittal.com'
+          }
     },
     vite: {
         css: {

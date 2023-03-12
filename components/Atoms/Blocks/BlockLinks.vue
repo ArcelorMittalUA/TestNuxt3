@@ -1,125 +1,92 @@
+<script lang="ts" setup>
+const props = defineProps({
+  links: {
+    type: Object,
+    default: () => ({}),
+  },
+});
+</script>
 <template>
   <section class="ar-block-container section-links">
-    <div class="swiper">
-      <div class="swiper-wrapper">
-        <BlockLinksSlide
-          v-if="links.linkslist.linkItem1"
-          :linktitle="links.linkslist.linkItem1.title"
-          :linkUrl="links.linkslist.linkItem1.url"
-          :linkImage="links.linkslist.image1.sourceUrl"
-          :color="links.linkslist.colortext1"
-          class="swiper-slide"
-        />
-        <BlockLinksSlide
-          v-if="links.linkslist.linkItem2"
-          :linktitle="links.linkslist.linkItem2.title"
-          :linkUrl="links.linkslist.linkItem2.url"
-          :linkImage="links.linkslist.image2.sourceUrl"
-          :color="links.linkslist.colortext2"
-          class="swiper-slide"
-        />
-        <BlockLinksSlide
-          v-if="links.linkslist.linkItem3"
-          :linktitle="links.linkslist.linkItem3.title"
-          :linkUrl="links.linkslist.linkItem3.url"
-          :linkImage="links.linkslist.image3.sourceUrl"
-          :color="links.linkslist.colortext3"
-          class="swiper-slide"
-        />
-        <BlockLinksSlide
-          v-if="links.linkslist.linkItem4"
-          :linktitle="links.linkslist.linkItem4.title"
-          :linkUrl="links.linkslist.linkItem4.url"
-          :linkImage="links.linkslist.image4.sourceUrl"
-          :color="links.linkslist.colortext4"
-          class="swiper-slide"
-        />
-        <BlockLinksSlide
-          v-if="links.linkslist.linkItem5"
-          :linktitle="links.linkslist.linkItem5.title"
-          :linkUrl="links.linkslist.linkItem5.url"
-          :linkImage="links.linkslist.image5.sourceUrl"
-          :color="links.linkslist.colortext5"
-          class="swiper-slide"
-        />
-      </div>
-    </div>
-  </section>
-</template>
-<script>
-import { Swiper, Navigation, Pagination, Autoplay } from 'swiper'
-import 'swiper/swiper-bundle.min.css'
-
-export default {
-  props: {
-    links: {},
-  },
-  mounted() {
-    // configure Swiper to use modules. The modules were tested with SwiperJS v6.8.4 with NuxtJS v2.15.7
-    // previously it was before export default. Moved here for performance issues. Move back in case of problems.
-    // add or remove unused modules
-
-    Swiper.use([Navigation, Pagination, Autoplay])
-
-    // init Swiper:
-    /* eslint-disable no-unused-vars */
-    const swiper = new Swiper('.swiper', {
-      // Optional parameters
-      // @see https://swiperjs.com/swiper-api#parameters
-      direction: 'horizontal',
-      loop: true,
-      slidesPerView: 3.2,
-      spaceBetween: 0,
-      reverseDirection: true,
-      speed: 300,
-      // remove unused modules if needed
-      modules: [Navigation, Pagination, Autoplay],
-      // Pagination if needed
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'bullets',
-        clickable: true,
-      },
-      // Autoplay if needed
-      autoplay: {
+    <Swiper
+      class="swiper-cards"
+      :modules="[SwiperAutoplay, SwiperNavigation, SwiperPagination]"
+      :slides-per-view="3.2"
+      :space-between="0"
+      :reverseDirection="true"
+      :loop="true"
+      :speed="300"
+      :autoplay="{
         delay: 3000,
-      },
-      // Navigation arrows if needed
-      navigation: {
+      }"
+      :navigation="{
         nextEl: '.slider-block__next',
         prevEl: '.slider-block__prev',
-      },
-      breakpoints: {
-        // when window width is >= 320px
+      }"
+      :breakpoints="{
         320: {
           slidesPerView: 1.1,
           spaceBetween: 0,
         },
-        // when window width is >= 480px
         480: {
           slidesPerView: 1.1,
           spaceBetween: 0,
         },
-        // when window width is >= 640px
         768: {
           slidesPerView: 3.2,
           spaceBetween: 0,
         },
-      },
-      // Configure other options. Not tested
-    })
-  },
-  computed: {
-    urlRemove() {
-      return this.links.linkslist.linkItem1.url.replace(
-        /^.*?:\/\/.*?(?=\/|$)/,
-        ''
-      )
-    },
-  },
-}
-</script>
-<style lang="scss">
+      }"
+    >
+      <SwiperSlide v-if="links?.linkslist?.linkItem1">
+        <AtomsBlocksBlockLinksSlide
+          :linktitle="links.linkslist.linkItem1.title"
+          :linkUrl="links?.linkslist?.linkItem1.url"
+          :linkImage="links?.linkslist?.image1.sourceUrl"
+          :color="links?.linkslist?.colortext1"
+          class="swiper-slide"
+        />
+      </SwiperSlide>
+      <SwiperSlide v-if="links?.linkslist?.linkItem2">
+        <AtomsBlocksBlockLinksSlide
+          :linktitle="links?.linkslist?.linkItem2.title"
+          :linkUrl="links?.linkslist?.linkItem2.url"
+          :linkImage="links?.linkslist?.image2.sourceUrl"
+          :color="links?.linkslist?.colortext2"
+          class="swiper-slide"
+        />
+      </SwiperSlide>
+      <SwiperSlide v-if="links?.linkslist?.linkItem3">
+        <AtomsBlocksBlockLinksSlide
+          :linktitle="links.linkslist.linkItem3.title"
+          :linkUrl="links?.linkslist?.linkItem3.url"
+          :linkImage="links?.linkslist?.image3.sourceUrl"
+          :color="links?.linkslist?.colortext3"
+          class="swiper-slide"
+        />
+      </SwiperSlide>
+      <SwiperSlide v-if="links?.linkslist?.linkItem4">
+        <AtomsBlocksBlockLinksSlide
+          :linktitle="links?.linkslist?.linkItem4.title"
+          :linkUrl="links?.linkslist?.linkItem4.url"
+          :linkImage="links?.linkslist?.image4.sourceUrl"
+          :color="links?.linkslist?.colortext4"
+          class="swiper-slide"
+        />
+      </SwiperSlide>
+      <SwiperSlide v-if="links?.linkslist?.linkItem5">
+        <AtomsBlocksBlockLinksSlide
+          :linktitle="links?.linkslist?.linkItem5.title"
+          :linkUrl="links?.linkslist?.linkItem5.url"
+          :linkImage="links?.linkslist?.image5.sourceUrl"
+          :color="links?.linkslist?.colortext5"
+          class="swiper-slide"
+        />
+      </SwiperSlide>
+    </Swiper>
+  </section>
+</template>
+<style>
 .section-links {
   overflow: hidden;
   position: relative;
@@ -140,5 +107,13 @@ export default {
   padding-bottom: 24px;
   border-bottom: 1px solid #212121;
 }
-
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-wrapper {
+  min-width: 100vh;
+  width: 100vh;
+}
 </style>

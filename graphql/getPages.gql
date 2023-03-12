@@ -1,0 +1,250 @@
+query getPages($uri: String, $locale: LanguageCodeEnum!) {
+  getPages: pageBy(uri: $uri) {
+    featuredImage {
+      node {
+        sourceUrl(size: _1536X1536)
+        uri
+        mediaItemUrl
+        caption
+        altText
+      }
+    }
+    translation(language: $locale) {
+      id
+      title
+      date
+      slug
+      featuredImage {
+        node {
+          sourceUrl(size: _1536X1536)
+          uri
+          mediaItemUrl
+          caption
+          altText
+        }
+      }
+      parent {
+        node {
+          slug
+          ... on Page {
+            id
+            title
+          }
+        }
+      }
+      children {
+        edges {
+          node {
+            slug
+            ... on Page {
+              id
+              title
+              featuredImage {
+                node {
+                  sourceUrl(size: MEDIUM_LARGE)
+                  uri
+                  mediaItemUrl
+                  caption
+                  altText
+                }
+              }
+            }
+          }
+        }
+      }
+      blocks {
+        name
+        ... on CoreHeadingBlock {
+          dynamicContent
+          attributes {
+            ... on CoreHeadingBlockAttributes {
+              content
+            }
+          }
+        }
+        ... on CoreGalleryBlock {
+            __typename
+          innerBlocks {
+            ... on CoreImageBlock {
+              mediaItem {
+                node {
+                  link
+                  sourceUrl(size: LARGE)
+                }
+              }
+            }
+          }
+        }
+        ... on CoreParagraphBlock {
+          dynamicContent
+          attributes {
+            ... on CoreParagraphBlockAttributes {
+              align
+              anchor
+              content
+              fontSize
+            }
+          }
+        }
+        ... on CoreListBlock {
+          dynamicContent
+          saveContent
+          attributes {
+            ... on CoreListBlockAttributes {
+              values
+            }
+          }
+        }
+        ... on CoreImageBlock {
+          dynamicContent
+          attributes {
+            ... on CoreImageBlockAttributes {
+              id
+              url
+              alt
+              caption
+            }
+          }
+        }
+        ... on CoreGroupBlock {
+          saveContent
+          attributes {
+            ... on CoreGroupBlockAttributes {
+              align
+              anchor
+              layout
+              style
+              backgroundColor
+              className
+              lock
+              tagName
+              textColor
+            }
+          }
+        }
+        ... on CoreHeadingBlock {
+          attributes {
+            ... on CoreHeadingBlockAttributes {
+              align
+              anchor
+              content
+              level
+              className
+              backgroundColor
+              fontSize
+              lock
+              placeholder
+              style
+              textAlign
+              textColor
+            }
+          }
+        }
+        ... on CoreFileBlock {
+          attributes {
+            ... on CoreFileBlockAttributes {
+              id
+              downloadButtonText
+              showDownloadButton
+              textLinkHref
+              textLinkTarget
+              anchor
+              className
+              displayPreview
+              align
+              fileId
+              fileName
+              href
+              lock
+              previewHeight
+            }
+          }
+        }
+        ... on CoreQuoteBlock {
+          attributes {
+            ... on CoreQuoteBlockAttributes {
+              align
+              anchor
+              backgroundColor
+              citation
+              className
+              fontSize
+              gradient
+              lock
+              textColor
+              value
+              style
+            }
+          }
+          innerBlocks {
+            ... on CoreParagraphBlock {
+              saveContent
+            }
+          }
+        }
+        ... on CoreButtonsBlock {
+          saveContent
+          innerBlocks {
+            ... on CoreButtonBlock {
+              attributes {
+                ... on CoreButtonBlockAttributes {
+                  align
+                  anchor
+                  style
+                  rel
+                  placeholder
+                  lock
+                  linkTarget
+                  gradient
+                  fontSize
+                  fontFamily
+                  className
+                  backgroundColor
+                  width
+                  url
+                  title
+                  textColor
+                  text
+                }
+              }
+            }
+          }
+        }
+        ... on CoreHtmlBlock {
+          dynamicContent
+          name
+          originalContent
+        }
+        ... on CoreEmbedBlock {
+          attributesJSON
+          dynamicContent
+          originalContent
+        }
+        ... on CoreTableBlock {
+          attributesJSON
+          dynamicContent
+          saveContent
+        }
+        ... on CoreColumnsBlock {
+          innerBlocks {
+            ... on CoreColumnBlock {
+              saveContent
+              order 
+            }
+          }
+        }
+      }
+      seo {
+        title
+        metaDesc
+        opengraphImage {
+          sourceUrl(size: LARGE)
+        }
+        breadcrumbs {
+          text
+          url
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,96 @@
+query getMainPage {
+  getMainPage: pageBy(uri: "holovna") {
+    translation(language: UK) {
+      id
+      title
+      slug
+      mainpage {
+        herovideoblock {
+          title
+          description
+          videolink {
+            mediaItemUrl
+          }
+          videocover {
+            sourceUrl(size: _1536X1536)
+            uri
+            mediaItemUrl
+          }
+          fieldGroupName
+        }
+        linkslist {
+          linkItem1 {
+            title
+            url
+          }
+          image1 {
+            sourceUrl(size: LARGE)
+            uri
+          }
+          colortext1
+          linkItem2 {
+            title
+            url
+          }
+          image2 {
+            sourceUrl(size: LARGE)
+            uri
+          }
+          colortext2
+          linkItem3 {
+            title
+            url
+          }
+          image3 {
+            sourceUrl(size: LARGE)
+            uri
+          }
+          colortext3
+          linkItem4 {
+            title
+            url
+          }
+          image4 {
+            sourceUrl(size: LARGE)
+            uri
+          }
+          colortext4
+          linkItem5 {
+            title
+            url
+          }
+          image5 {
+            sourceUrl(size: LARGE)
+            uri
+          }
+          colortext5
+        }
+      }
+      blocks {
+        ... on CoreGroupBlock {
+          saveContent
+          attributes {
+            ... on CoreGroupBlockAttributes {
+              align
+              anchor
+              layout
+              style
+              backgroundColor
+              className
+              lock
+              tagName
+              textColor
+            }
+          }
+        }
+      }
+      seo {
+        title
+        metaDesc
+        opengraphImage {
+          sourceUrl
+        }
+      }
+    }
+  }
+}

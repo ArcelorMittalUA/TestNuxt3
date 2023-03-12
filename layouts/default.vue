@@ -6,6 +6,7 @@
       </div>
       <OrganismsTheHeader />
       <slot />
+      <OrganismsTheFooter />
     </div>
   </div>
 </template>

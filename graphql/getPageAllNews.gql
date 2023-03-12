@@ -1,0 +1,34 @@
+query getAllNews(
+    $locale: LanguageCodeFilterEnum,  
+    $first: Int,
+    $after: String,
+  ) {
+  getAllNews: allNews(first: $first, after: $after, where: {language: $locale}) {
+    edges {
+      node {
+        id
+        title
+        slug
+        date
+        excerpt
+        featuredImage {
+          node {
+            sourceUrl(size: MEDIUM_LARGE)
+            uri
+            mediaItemUrl
+            caption
+            altText
+          }
+        }
+        translation(language: UK) {
+          slug
+        }
+      }
+      cursor
+    }
+    pageInfo {
+        endCursor
+        hasNextPage
+    }
+  }
+}

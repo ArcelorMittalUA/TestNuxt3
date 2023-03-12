@@ -1,0 +1,26 @@
+query getMainPage(
+  $locale: LanguageCodeFilterEnum,) { 
+  getMainPageNews: allNews(first: 7, where: {language: $locale}) {
+    edges {
+      node {
+        id
+        title
+        slug
+        date
+        excerpt
+        featuredImage {
+          node {
+            sourceUrl(size: MEDIUM_LARGE)
+            uri
+            mediaItemUrl
+            caption
+            altText
+          }
+        }
+        translation(language: UK) {
+          slug
+        }
+      }
+    }
+  }
+}

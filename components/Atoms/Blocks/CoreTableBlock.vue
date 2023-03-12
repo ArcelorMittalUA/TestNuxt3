@@ -1,15 +1,16 @@
+<script lang="ts" setup>
+const props = defineProps({
+  attributes: {
+    type: Object,
+    default: () => ({}),
+  },
+});
+</script>
 <template>
   <div class="table-block">
     <div v-html="block.saveContent"></div>
   </div>
 </template>
-<script>
-export default {
-  props: {
-    block: {},
-  },
-}
-</script>
 <style lang="scss">
 .table-block {
   max-width: 1028px;

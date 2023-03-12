@@ -1,16 +1,50 @@
 <script lang="ts" setup>
-</script>
-<template>
-  <div style="height: 3000px">dfdfdgf</div>
-</template>
-<script setup lang="ts">
-useHead({
-  title: 'Test',
-  meta: [
-    { name: 'description', content: 'My amazing site.' }
-  ],
-  bodyAttrs: {
-    class: 'test'
+import getMainPage from "@/graphql/getMainPage.gql";
+import getMainPageNews from "@/graphql/getMainPageNews.gql";
+
+type getMainPageNewsResult = {
+  getMainPageNews: {
+    edges: {}[]
+  }
+}
+
+
+
+
+const { locale } = useI18n();
+
+const { data: getMainPageData } = await useAsyncQuery(getMainPage);
+
+const { data: getMainPageNewsData } = await useAsyncQuery<getMainPageNewsResult>(getMainPageNews, {
+  variables() {
+    return {
+      locale: this.$i18n.locale.toUpperCase(),
+    };
   },
+});
+
+const getMainPageNewsRes = computed(() => getMainPageNewsData.value?.getMainPageNews ?? []);
+
+const newsAll = computed(() => {
+  if (!getMainPageNewsRes?.value.edges) return []
+  return getMainPageNewsRes.value.edges.slice(1, -1)
 })
 </script>
+<template>
+  <main class="page-content main">
+    <OrganismsTheHeroMain
+      :heading="getMainPageData?.getMainPage?.translation?.mainpage"
+    />
+
+    <AtomsBlocksBlockLinks
+      :links="getMainPageData?.getMainPage?.translation?.mainpage"
+    />
+
+    <AtomsBlocksBlockNews
+      v-if="getMainPageNewsData"
+      :news="getMainPageNewsRes.edges[0]"
+    />
+    <OrganismsTheMainPageNews :news="newsAll" />
+  </main>
+</template>
+

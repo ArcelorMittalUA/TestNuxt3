@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+const props = defineProps({
+  attributes: {
+    type: Object,
+    default: () => ({}),
+  },
+});
+</script>
 <template>
   <div class="image-block">
     <div class="container">
@@ -5,6 +13,7 @@
         <nuxt-picture
           :src="attributes.url"
           loading="lazy"
+          legacyFormat="webp"
           class="image-block__picture"
           :imgAttrs="{
             class: 'image-block__img',
@@ -19,13 +28,6 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  props: {
-    attributes: {},
-  },
-}
-</script>
 <style lang="scss">
 .image-block {
     margin-top: 24px;

@@ -3,40 +3,34 @@
     <div class="container">
       <div class="section-news__wrapper">
         <div class="section-news__content">
-          <span v-if="this.$i18n.locale == 'uk'" class="section-news__date">
-            {{
-              $dateFns.format(news.node.date, 'd MMMM yyyy', { locale: 'uk' })
-            }}
-          </span>
-          <span v-else class="section-news__date">{{
-            $dateFns.format(news.node.date, 'd MMMM yyyy', { locale: 'en-US' })
-          }}</span>
-          <h3 class="section-news__title" v-html="news.node.title"></h3>
-          <div class="section-news__label" v-html="news.node.excerpt"></div>
-          <AtomButton
+          
+          <h3 class="section-news__title" v-html="news?.node?.title"></h3>
+          <div class="section-news__label" v-html="news?.node?.excerpt"></div>
+          <AtomsTheButton
             :button-name="`${$t('readMore')}`"
             button-with="300px"
-            :button-link="`/media/news/${news.node.translation.slug}`"
+            :button-link="`/media/news/${news?.node?.translation.slug}`"
             type="color"
             class="button-container"
           />
         </div>
         <div class="section-news__image">
-          <AtomsImage
-            v-if="news.node.featuredImage"
-            :image="news.node.featuredImage.node"
+          <AtomsTheImage
+            v-if="news?.node?.featuredImage"
+            :image="news?.node?.featuredImage.node"
           />
         </div>
       </div>
     </div>
   </section>
 </template>
-<script>
-export default {
-  props: {
-    news: {},
+<script lang="ts" setup>
+const props = defineProps({
+  news: {
+    type: Object,
+    default: () => ({})
   },
-}
+})
 </script>
 <style lang="scss">
 .section-news {

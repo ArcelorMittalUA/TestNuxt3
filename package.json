@@ -3,11 +3,13 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
+    "generate": "graphql-codegen --config codegen.yml",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^3.2.2",
+    "@graphql-codegen/fragment-matcher": "^4.0.1",
     "@nuxt/image-edge": "^1.0.0-27919678.2f5b64b",
     "@nuxtjs/apollo": "^5.0.0-alpha.5",
     "@nuxtjs/date-fns": "^1.5.0",
@@ -15,5 +17,9 @@
     "@nuxtjs/i18n": "^8.0.0-beta.9",
     "nuxt": "^3.0.0",
     "sass": "^1.58.3"
+  },
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.6.6",
+    "nuxt-swiper": "^1.0.1"
   }
 }

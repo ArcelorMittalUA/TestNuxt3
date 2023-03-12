@@ -1,70 +1,87 @@
-<template>
-  <div class="section-links__slide">
-    <div
-      class="section-links__content"
-      :class="[color === 'black' ? 'black-color' : '']"
-    >
-      <h4 class="section-links__title">{{ linktitle }}</h4>
-      <NuxtLink :to="urlRemove" class="section-links__readMore">{{
-        $t('readMore')
-      }}</NuxtLink>
-    </div>
-    <figure class="section-links__figure">
-      <nuxt-picture
-        :src="linkImage"
-        loading="lazy"
-        class="section-links__picture"
-        :imgAttrs="{
-          class: 'section-links__img',
-          style: 'display:block',
-        }"
-      />
-    </figure>
-    <NuxtLink
-      v-if="urlSet"
-      :to="localePath(urlRemove)"
-      class="section-links__link"
-    ></NuxtLink>
-    <a v-else :href="urlRemove" class="section-links__link" target="_blank"></a>
-  </div>
-</template>
-<script>
-export default {
-  props: {
-    linktitle: {},
-    linkUrl: {},
-    linkImage: {},
-    color: {},
+<script lang="ts" setup>
+const props = defineProps({
+  linktitle: {
+    type: String,
+    default: () => ({}),
   },
-  computed: {
-    urlRemove() {
-      const cutDomain = new URL(this.linkUrl)
-      const url = this.linkUrl
-      const hostname = cutDomain.hostname
-      const pathname = cutDomain.pathname.split('/').slice(1)
-      if (pathname[0] === 'wp-content') {
-        return url
-      } else if (hostname === 'ukraine-api.arcelormittal.com') {
-        return url.replace(/^.*?:\/\/.*?(?=\/|$)/, '')
-      } else {
-        return url
-      }
-    },
-    urlSet() {
-      const cutDomain = new URL(this.linkUrl)
-      const pathname = cutDomain.pathname.split('/').slice(1)
-      const hostname = cutDomain.hostname
-      if (pathname[0] === 'wp-content') {
-        return false
-      } else if (hostname === 'ukraine-api.arcelormittal.com') {
-        return true
-      } else {
-        return false
-      }
-    },
+  linkUrl: {
+    type: String,
+    default: () => ({}),
   },
-}
+  linkImage: {
+    type: String,
+    default: () => ({}),
+  },
+  color: {
+    type: String,
+    default: () => ({}),
+  },
+});
+
+const urlRemove = computed(() => {
+  const cutDomain = new URL(props.linkUrl);
+  const url = props.linkUrl;
+  const hostname = cutDomain.hostname;
+  const pathname = cutDomain.pathname.split("/").slice(1);
+  if (pathname[0] === "wp-content") {
+    return url;
+  } else if (hostname === "ukraine-api.arcelormittal.com") {
+    return url.replace(/^.*?:\/\/.*?(?=\/|$)/, "");
+  } else {
+    return url;
+  }
+});
+
+const urlSet = computed(() => {
+  const cutDomain = new URL(props.linkUrl);
+  const pathname = cutDomain.pathname.split("/").slice(1);
+  const hostname = cutDomain.hostname;
+  if (pathname[0] === "wp-content") {
+    return false;
+  } else if (hostname === "ukraine-api.arcelormittal.com") {
+    return true;
+  } else {
+    return false;
+  }
+});
 </script>
+<template>
+  
+    <div class="section-links__slide">
+      <div
+        class="section-links__content"
+        :class="[color === 'black' ? 'black-color' : '']"
+      >
+        <h4 class="section-links__title">{{ linktitle }}</h4>
+        <NuxtLink :to="urlRemove" class="section-links__readMore">{{
+          $t("readMore")
+        }}</NuxtLink>
+      </div>
+      <figure class="section-links__figure">
+        <nuxt-picture
+          :src="linkImage"
+          loading="lazy"
+          class="section-links__picture"
+          :imgAttrs="{
+            class: 'section-links__img',
+            style: 'display:block',
+          }"
+        />
+      </figure>
+      <NuxtLink
+        v-if="urlSet"
+        :to="localePath(urlRemove)"
+        class="section-links__link"
+      ></NuxtLink>
+      <a
+        v-else
+        :href="urlRemove"
+        class="section-links__link"
+        target="_blank"
+      ></a>
+    </div>
+
+</template>
 <style lang="scss">
 .section-links__figure {
   position: relative;
@@ -73,7 +90,7 @@ export default {
   &::after {
     display: table;
     border-radius: inherit;
-    content: '';
+    content: "";
     padding-bottom: 106.666%;
   }
 }
@@ -168,7 +185,7 @@ export default {
 
 .section-links__link {
   &::after {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     width: 100%;

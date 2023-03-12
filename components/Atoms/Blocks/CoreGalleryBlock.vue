@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+const props = defineProps({
+  attributes: {
+    type: Object,
+    default: () => ({}),
+  },
+});
+</script>
 <template>
   <div class="slider-block">
     <div class="swiper container">
@@ -21,62 +29,13 @@
         </div>
       </div>
       <div class="slider-block__controls">
-        <div class="slider-block__next"><TheNextIcon /></div>
+        <div class="slider-block__next"><AtomsIconsTheNextIcon /></div>
         <div class="swiper-pagination"></div>
-        <div class="slider-block__prev"><TheNextIcon /></div>
+        <div class="slider-block__prev"><AtomsIconsTheNextIcon /></div>
       </div>
     </div>
   </div>
 </template>
-<script>
-import { Swiper, Navigation, Pagination, Autoplay } from 'swiper'
-import 'swiper/swiper-bundle.min.css'
-
-export default {
-  props: {
-    attributes: {},
-  },
-
-  mounted() {
-    // configure Swiper to use modules. The modules were tested with SwiperJS v6.8.4 with NuxtJS v2.15.7
-    // previously it was before export default. Moved here for performance issues. Move back in case of problems.
-    // add or remove unused modules
-
-    Swiper.use([Navigation, Pagination, Autoplay])
-
-    // init Swiper:
-    /* eslint-disable no-unused-vars */
-    const swiper = new Swiper('.swiper', {
-      // Optional parameters
-      // @see https://swiperjs.com/swiper-api#parameters
-      direction: 'horizontal',
-      loop: false,
-      slidesPerView: 2,
-      spaceBetween: 30,
-      reverseDirection: true,
-      speed: 300,
-      // remove unused modules if needed
-      modules: [Navigation, Pagination, Autoplay],
-      // Pagination if needed
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'bullets',
-        clickable: true,
-      },
-      // Autoplay if needed
-      autoplay: {
-        delay: 3000,
-      },
-      // Navigation arrows if needed
-      navigation: {
-        nextEl: '.slider-block__next',
-        prevEl: '.slider-block__prev',
-      },
-      // Configure other options. Not tested
-    })
-  },
-}
-</script>
 <style lang="scss">
 .slider-block {
   background: var(--text-secondary);

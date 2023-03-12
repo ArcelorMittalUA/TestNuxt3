@@ -1,15 +1,16 @@
+<script lang="ts" setup>
+const props = defineProps({
+  attributes: {
+    type: Object,
+    default: () => ({}),
+  },
+});
+</script>
 <template>
   <div class="list-block text-block-width"  v-html="attributes.saveContent">
     
   </div>
 </template>
-<script>
-export default {
-  props: {
-    attributes: {},
-  },
-}
-</script>
 <style lang="scss">
 .list-block {
   ul {

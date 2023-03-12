@@ -1,12 +1,27 @@
+<script lang="ts" setup>
+const props = defineProps({
+  attributes: {
+    type: Object,
+    default: () => ({}),
+  },
+});
+const fileType = computed(() => {
+  const fileName = props.attributes.href;
+  const fileSplit = fileName.split(".");
+  const fileSplitReverse = fileSplit.reverse();
+  const fileType = fileSplitReverse[0];
+  return fileType;
+});
+</script>
 <template>
   <div v-if="attributes.fileName" class="file-block text-block-width">
     <div class="file-block__left">
       <div class="file-block__icon">
-        <ThePdf v-if="fileType === 'pdf'" />
-        <TheDocs v-else-if="fileType === 'docx'" />
-        <TheXlsx v-else-if="fileType === 'xlsx'" />
-        <TheJpg v-else-if="fileType === 'jpg'" />
-        <TheFile v-else />
+        <AtomsIconsThePdf v-if="fileType === 'pdf'" />
+        <AtomsIconsTheDocs v-else-if="fileType === 'docx'" />
+        <AtomsIconsTheXlsx v-else-if="fileType === 'xlsx'" />
+        <AtomsIconsTheJpg v-else-if="fileType === 'jpg'" />
+        <AtomsIconsTheFile v-else />
       </div>
       <div class="file-block__name">
         {{ attributes.fileName }}.{{ fileType }}
@@ -14,27 +29,11 @@
     </div>
     <div class="file-block__right">
       <a :href="attributes.href" target="_blank" class="file-block__download">
-        {{ $t('download') }}
+        {{ $t("download") }}
       </a>
     </div>
   </div>
 </template>
-<script>
-export default {
-  props: {
-    attributes: {},
-  },
-  computed: {
-    fileType() {
-      const fileName = this.attributes.href
-      const fileSplit = fileName.split('.')
-      const fileSplitReverse = fileSplit.reverse()
-      const fileType = fileSplitReverse[0]
-      return fileType
-    },
-  },
-}
-</script>
 <style lang="scss">
 .file-block {
   border: 1px solid;

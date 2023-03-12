@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+const props = defineProps({
+  attributes: {
+    type: Object,
+    default: () => ({}),
+  },
+});
+</script>
 <template>
   <div class="column-block">
     <div v-for="column in attributes.innerBlocks" :key="column.order">
@@ -5,13 +13,6 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  props: {
-    attributes: {},
-  },
-}
-</script>
 <style lang="scss">
 .column-block {
   margin-top: 32px;
