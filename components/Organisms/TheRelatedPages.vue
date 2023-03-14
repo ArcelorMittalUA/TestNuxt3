@@ -17,7 +17,7 @@ const props = defineProps({
 <template >
   <section v-if="pages.edges.length != 0" class="related-pages">
     <div class="container">
-      <AtomsTitle :title="`${$t('related')}`" />
+      <AtomsTheTitle :title="`${$t('related')}`" />
       <div
         class="related-pages__wrapper"
         :class="[

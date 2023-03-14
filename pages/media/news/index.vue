@@ -19,6 +19,8 @@ const {
   loading,
 } = useQuery(getAllNews, variables);
 
+
+
 function showMores() {
   fetchMore({
     variables: {

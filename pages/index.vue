@@ -4,34 +4,45 @@ import getMainPageNews from "@/graphql/getMainPageNews.gql";
 
 type getMainPageNewsResult = {
   getMainPageNews: {
-    edges: {}[]
-  }
-}
-
-
-
+    edges: {}[];
+  };
+};
 
 const { locale } = useI18n();
 
-const { data: getMainPageData } = await useAsyncQuery(getMainPage);
+const variables = {
+  locale: locale.value.toUpperCase(),
+};
 
-const { data: getMainPageNewsData } = await useAsyncQuery<getMainPageNewsResult>(getMainPageNews, {
-  variables() {
-    return {
-      locale: this.$i18n.locale.toUpperCase(),
-    };
-  },
-});
+const { result: getMainPageData } = useQuery(getMainPage, variables);
 
-const getMainPageNewsRes = computed(() => getMainPageNewsData.value?.getMainPageNews ?? []);
+const { result: getMainPageNewsData } = useQuery<getMainPageNewsResult>(
+  getMainPageNews,
+  {
+    variables() {
+      return {
+        locale: this.$i18n.locale.toUpperCase(),
+      };
+    },
+  }
+);
+
+const getMainPageNewsRes = computed(
+  () => getMainPageNewsData.value?.getMainPageNews ?? []
+);
 
 const newsAll = computed(() => {
-  if (!getMainPageNewsRes?.value.edges) return []
-  return getMainPageNewsRes.value.edges.slice(1, -1)
-})
+  if (!getMainPageNewsRes?.value.edges) return [];
+  return getMainPageNewsRes.value.edges.slice(1, -1);
+});
+
+
+useHead({
+  title: () => getMainPageData?.value?.getMainPage?.translation?.seo?.title,
+});
 </script>
 <template>
-  <main class="page-content main">
+  <main v-if="getMainPageData" class="page-content main">
     <OrganismsTheHeroMain
       :heading="getMainPageData?.getMainPage?.translation?.mainpage"
     />

@@ -4,31 +4,31 @@ const route = useRoute();
 const props = defineProps({
   title: {
     type: String,
-    default: "",
+    default: () => ({}),
   },
   image: {
-    type: Object,
-    default: "",
+    type: Object, String,
+    default: () => ({}),
   },
   parent: {
-    type: String,
-    default: "",
+    type: Object, String,
+    default: () => ({}),
   },
   date: {
-    type: String,
-    default: "",
+    type: Object, String,
+    default: () => ({}),
   },
   breadcrumbs: {
     type: Object,
-    default: "",
+    default: () => ({}),
   },
   baseUrl: {
     type: String,
-    default: "",
+    default: () => ({}),
   },
   description: {
     type: String,
-    default: "",
+    default: () => ({}),
   },
 });
 

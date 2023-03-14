@@ -2,7 +2,7 @@
 const props = defineProps({
   post: {
     type: Object,
-    default: "",
+    default: () => ({}),
   },
 });
 </script>

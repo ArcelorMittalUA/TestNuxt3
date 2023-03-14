@@ -8,10 +8,21 @@ const variables = {
   slug: route.params.id,
 };
 
-const { data: getManagementData } = await useAsyncQuery(
+type getMainPageNewsResult = {
+  getMainPageNews: {
+    edges: {}[];
+  };
+};
+
+const { result: getManagementData } = useQuery(
   getManagement,
   variables
 );
+
+useHead({
+  title: () => getManagementData?.value?.getManagement?.translation?.seo?.title,
+});
+
 </script>
 <template>
   <main class="page-content">

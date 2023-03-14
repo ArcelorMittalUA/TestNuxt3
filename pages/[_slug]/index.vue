@@ -8,8 +8,11 @@ const variables = {
   uri: route.params._slug,
 };
 
-const { data: getPagesData } = await useAsyncQuery(getPages, variables);
+const { result: getPagesData } = await useQuery(getPages, variables);
 
+useHead({
+  title: () => getPagesData?.value?.getPages?.translation?.seo?.title,
+});
 
 </script>
 <template>

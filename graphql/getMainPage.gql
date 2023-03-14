@@ -1,6 +1,7 @@
-query getMainPage {
+query getMainPage(
+  $locale: LanguageCodeEnum!) {
   getMainPage: pageBy(uri: "holovna") {
-    translation(language: UK) {
+    translation(language: $locale) {
       id
       title
       slug

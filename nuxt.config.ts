@@ -1,7 +1,6 @@
 export default defineNuxtConfig({
     app: {
         head: {
-            title: 'ArcelorMittal',
             meta: [
                 // <meta name="description" content="My amazing site">
                 { name: 'description', content: 'My amazing site.' }

@@ -29,11 +29,11 @@ const variables = {
   locale: locale.value.toUpperCase(),
 };
 
-const { data } = await useAsyncQuery(getMenu, variables)
+const { result } = useQuery(getMenu, variables)
 
 
 const menuParent = computed(() => {
-  return data.value?.getMenu.edges.filter(
+  return (result.value as Record<string, any>)?.getMenu.edges.filter(
     (i: MenuItem) => i.node.parentId === null
   );
 });
@@ -133,7 +133,7 @@ onUnmounted(() => {
           class="header-navigation"
           :class="{ 'header-navigation--search': isSearch }"
         >
-          <ul class="header-navigation__list">
+          <ul v-if="menuParent" class="header-navigation__list">
             <li
               v-for="item in menuParent"
               :key="item.node.id"
@@ -174,6 +174,7 @@ onUnmounted(() => {
                 @click.prevent.stop="setLocale(locale.code)"
                 >{{ locale.code }}</a
               >
+              <div @click="setLocale(locale === 'uk' ? 'en' : 'uk')">test</div>
             </div>
           </div>
           <div class="header-toolbar__search">

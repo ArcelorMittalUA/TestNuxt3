@@ -4,15 +4,15 @@ const route = useRoute();
 const props = defineProps({
   slug1: {
     type: String,
-    default: "",
+    default: () => ({}),
   },
   parent: {
     type: String,
-    default: "",
+    default: () => ({}),
   },
   breadcrumbs: {
-    type: Object,
-    default: "",
+    type: Array,
+    default: () => ({}),
   },
 });
 
